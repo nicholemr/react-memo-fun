@@ -14,12 +14,14 @@ export interface Dog {
 export interface DogsContextValue {
   dogs: Dog[];
   addDog: (dog: Dog) => void;
+  removeDog: (id: string) => void;
   children?: React.ReactNode;
 }
 
 export const DogsContext = createContext<DogsContextValue>({
   dogs: [],
   addDog: (dog: Dog) => null,
+  removeDog: (id: string) => null,
 });
 DogsContext.displayName = "DogsContext";
 
@@ -30,9 +32,13 @@ export const DogsContextProvider: FunctionComponent<DogsContextValue> = ({
   const addDog = (dog: Dog) => {
     setDogs([...dogs, dog]);
   };
+  const removeDog = (id: string) => {
+    const updatedDogs = dogs.filter((dog) => dog.id !== id);
+    setDogs(updatedDogs);
+  };
 
   return (
-    <DogsContext.Provider value={{ dogs, addDog }}>
+    <DogsContext.Provider value={{ dogs, addDog, removeDog }}>
       {children}
     </DogsContext.Provider>
   );

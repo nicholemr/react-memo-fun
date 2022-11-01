@@ -2,8 +2,10 @@ import React, { FunctionComponent, useContext } from "react";
 import { DogsContext } from "../context";
 
 export const Dogs: FunctionComponent = () => {
-  const { dogs } = useContext(DogsContext);
-  const handleClick = (id: string) => {};
+  const { dogs, removeDog } = useContext(DogsContext);
+  const handleClick = (id: string) => {
+    removeDog(id);
+  };
 
   const dogCards = dogs.map((dog) => (
     <div key={dog.id} style={{ display: "flex", flexDirection: "column" }}>

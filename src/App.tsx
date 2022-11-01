@@ -7,7 +7,7 @@ import { Dogs } from "./components  /Dogs";
 function App() {
   return (
     <div className="App" style={{ padding: "1rem" }}>
-      <DogsContextProvider dogs={[]} addDog={() => []}>
+      <DogsContextProvider dogs={[]} addDog={() => []} removeDog={() => []}>
         <Forms />
         <Dogs />
       </DogsContextProvider>
