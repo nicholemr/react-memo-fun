@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useContext, useState } from "react";
-import { Dog, DogsContext } from "../context";
+import { DogsContext } from "../context";
 import { v4 as uuid } from "uuid";
+import { Dog } from "../utils/types";
 
 export const Forms: FunctionComponent = () => {
   const [dog, setDog] = useState<Dog>();

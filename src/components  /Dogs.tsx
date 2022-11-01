@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useContext } from "react";
-import { Dog, DogsContext } from "../context";
+import { DogsContext } from "../context";
+import { Dog } from "../utils/types";
 
 export const Dogs: FunctionComponent = () => {
   const { dogs, removeDog } = useContext(DogsContext);
