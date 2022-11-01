@@ -5,6 +5,10 @@ import { Dog } from "../utils/types";
 export const DogCards: FunctionComponent = () => {
   const { dogs } = useContext(DogsContext);
 
+  if (dogs.length < 1) {
+    return null;
+  }
+
   const dogCards = useMemo(
     () =>
       dogs.map((dog) => (
