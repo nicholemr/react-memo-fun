@@ -28,7 +28,7 @@ export const Forms: FunctionComponent = () => {
   };
 
   return (
-    <div>
+    <div style={{ padding: "1rem" }}>
       <form onSubmit={handleSearchDog}>
         <label htmlFor="breed-select">
           choose a pet
@@ -41,12 +41,22 @@ export const Forms: FunctionComponent = () => {
             <option value="">--Please choose an option--</option>
             <option value="chihuahua">chihuahua</option>
             <option value="pomeranian">pomeranian</option>
+            <option value="dachshund">dachshund</option>
           </select>
         </label>
         <input type="submit" value="Submit" />
       </form>
-      {dog?.breed && <button onClick={handleAddDog}>Add Dog</button>}
-      {dog?.imgSrc && <img src={dog?.imgSrc}></img>}
+      <div
+        style={{
+          padding: "1rem",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        {dog?.imgSrc !== "" && <img src={dog?.imgSrc} width="300"></img>}
+        {dog?.imgSrc !== "" && <button onClick={handleAddDog}>Add Dog</button>}
+      </div>
     </div>
   );
 };
