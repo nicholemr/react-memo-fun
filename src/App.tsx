@@ -1,15 +1,22 @@
+import React from "react";
 import "./App.css";
 import { Forms } from "./components  ";
 import { DogsContextProvider } from "./context";
-import React from "react";
 import { Dogs } from "./components  /Dogs";
+import { DogsTable } from "./components  /DogsTable";
 
 function App() {
   return (
     <div className="App" style={{ padding: "1rem" }}>
-      <DogsContextProvider dogs={[]} addDog={() => []} removeDog={() => []}>
+      <DogsContextProvider
+        dogs={[]}
+        addDog={() => []}
+        removeDog={() => []}
+        sortDogs={() => []}
+      >
         <Forms />
         <Dogs />
+        <DogsTable />
       </DogsContextProvider>
     </div>
   );
