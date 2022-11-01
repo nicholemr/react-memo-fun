@@ -2,6 +2,7 @@ import React, {
   createContext,
   FunctionComponent,
   useCallback,
+  useReducer,
   useState,
 } from "react";
 
@@ -14,27 +15,44 @@ export interface Dog {
 export interface DogsContextValue {
   dogs: Dog[];
   addDog: (dog: Dog) => void;
-  removeDog: (id: string) => void;
+  removeDog: (sdog: Dog) => void;
   children?: React.ReactNode;
 }
 
 export const DogsContext = createContext<DogsContextValue>({
   dogs: [],
-  addDog: (dog: Dog) => null,
-  removeDog: (id: string) => null,
+  addDog: () => null,
+  removeDog: () => null,
 });
 DogsContext.displayName = "DogsContext";
+
+interface dogsReducerAction {
+  type: "add" | "remove";
+  dog: Dog;
+}
+export const dogsReducer = (state: Dog[], action: dogsReducerAction): Dog[] => {
+  switch (action.type) {
+    case "add":
+      return [...state, action.dog];
+    case "remove":
+      const updatedDogs = state.filter((dog) => dog.id !== action.dog.id);
+      return updatedDogs;
+    default:
+      return state;
+  }
+};
+const reducerInitialState: Dog[] = [{ breed: "", id: "", imgSrc: "" }];
 
 export const DogsContextProvider: FunctionComponent<DogsContextValue> = ({
   children,
 }) => {
-  const [dogs, setDogs] = useState<Dog[]>([]);
+  const [state, dispatch] = useReducer(dogsReducer, reducerInitialState);
+  const dogs = state;
   const addDog = (dog: Dog) => {
-    setDogs([...dogs, dog]);
+    dispatch({ type: "add", dog });
   };
-  const removeDog = (id: string) => {
-    const updatedDogs = dogs.filter((dog) => dog.id !== id);
-    setDogs(updatedDogs);
+  const removeDog = (dog: Dog) => {
+    dispatch({ type: "remove", dog });
   };
 
   return (

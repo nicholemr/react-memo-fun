@@ -31,7 +31,7 @@ export const Forms: FunctionComponent = () => {
     <div style={{ padding: "1rem" }}>
       <form onSubmit={handleSearchDog}>
         <label htmlFor="breed-select">
-          choose a pet
+          choose a pet<br></br>
           <select
             name="breeds"
             id="breed-select"
@@ -46,17 +46,19 @@ export const Forms: FunctionComponent = () => {
         </label>
         <input type="submit" value="Submit" />
       </form>
-      <div
-        style={{
-          padding: "1rem",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        {dog?.imgSrc !== "" && <img src={dog?.imgSrc} width="300"></img>}
-        {dog?.imgSrc !== "" && <button onClick={handleAddDog}>Add Dog</button>}
-      </div>
+      {dog?.imgSrc.includes("https://images.dog.ceo/breeds/") && (
+        <div
+          style={{
+            padding: "1rem",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <img src={dog?.imgSrc} width="300"></img>
+          <button onClick={handleAddDog}>Add Dog</button>
+        </div>
+      )}
     </div>
   );
 };
