@@ -41,7 +41,7 @@ export const dogsReducer = (state: Dog[], action: dogsReducerAction): Dog[] => {
       return state;
   }
 };
-const reducerInitialState: Dog[] = [{ breed: "", id: "", imgSrc: "" }];
+const reducerInitialState: Dog[] = [];
 
 export const DogsContextProvider: FunctionComponent<DogsContextValue> = ({
   children,

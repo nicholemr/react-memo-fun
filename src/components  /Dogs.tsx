@@ -8,7 +8,17 @@ export const Dogs: FunctionComponent = () => {
   };
 
   const dogCards = dogs.map((dog) => (
-    <div key={dog.id} style={{ display: "flex", flexDirection: "column" }}>
+    <div
+      key={dog.id}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        border: "1px solid black",
+        borderRadius: "0.5rem",
+        width: "fit-content",
+        padding: "1rem",
+      }}
+    >
       <img src={dog.imgSrc} width="300" />
       <button onClick={() => handleClick(dog)}>delete</button>
     </div>
